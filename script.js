@@ -1,31 +1,21 @@
-const container = document.querySelector('.container');
-const input = document.querySelector('input');
-const ndisplay = document.querySelector('.displayn');
-let n = 0;
-
-
 function randomColor() {
     return `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
 }
 
 const heading = document.querySelector('.heading');
-let text = heading.textContent;
-heading.textContent = "";
-for(let i = 0; i < text.length; ++i){
-    const span = document.createElement('span');
-    span.textContent = text[i];
-    span.style.color = randomColor();
-    heading.appendChild(span);
+function colourfulHeading() {
+    let text = heading.textContent;
+    heading.textContent = "";
+    for(let i = 0; i < text.length; ++i){
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.color = randomColor();
+        heading.appendChild(span);
+    }
 }
 
-input.addEventListener('input', () => {
-    n = parseInt(input.value);
-    ndisplay.textContent = `${n}`;
-    container.innerHTML = '';
-    if(n > 100){
-        alert("Please enter a number less than 100");
-        return;
-    }
+
+function generateGrid(n) {
     for (let i = 0; i < n; ++i) {
         const div = document.createElement('div');
         div.classList.add('row');
@@ -42,6 +32,32 @@ input.addEventListener('input', () => {
         }
         container.appendChild(div);
     }
+}
+
+colourfulHeading();
+
+
+const container = document.querySelector('.container');
+const input = document.querySelector('input');
+const ndisplay = document.querySelector('.displayn');
+let n = 16;
+ndisplay.textContent = `${n}`;
+generateGrid(n);
+const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = randomColor();
+        });
+});
+input.addEventListener('input', () => {
+    n = parseInt(input.value);
+    ndisplay.textContent = `${n}`;
+    container.innerHTML = '';
+    if(n > 100){
+        alert("Please enter a number less than 100");
+        return;
+    }
+    generateGrid(n);
 
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
@@ -50,3 +66,31 @@ input.addEventListener('input', () => {
         });
     });
 });
+
+const BWModeButton = document.querySelector('.BWMode');
+const RainbowModeButton = document.querySelector('.RainbowMode');
+const ClearButton = document.querySelector('.Clear');
+
+BWModeButton.addEventListener('click', () => {
+    // We modify the randomColor function to return white
+    randomColor = () => {
+        return 'white';
+    };
+}
+);
+
+RainbowModeButton.addEventListener('click', () => {
+    // We modify the randomColor function to return a random color
+    randomColor = () => {
+        return `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
+    };
+}
+);
+
+ClearButton.addEventListener('click', () => {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.style.backgroundColor = 'black';
+    });
+}
+);
