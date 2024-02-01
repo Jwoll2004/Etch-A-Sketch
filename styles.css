@@ -6,14 +6,15 @@ html {
 
 .heading {
     font-family: 'Dokdo', system-ui;
-    font-size: 64px;
+    font-size: 80px;
+    margin-bottom: 30px;
 }
 
 .container {
-    margin-top: 75px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 500px;
+    height: 500px;
+    border: 1px solid white;
+    margin: 75px auto;
 }
 .square {
     border: 1px solid white;
