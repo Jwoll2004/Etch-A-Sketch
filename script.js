@@ -70,14 +70,14 @@ input.addEventListener('input', () => {
     });
 });
 
-const BWModeButton = document.querySelector('.BWMode');
+const SModeButton = document.querySelector('.SMode');
 const RainbowModeButton = document.querySelector('.RainbowMode');
 const ClearButton = document.querySelector('.Clear');
 
-BWModeButton.addEventListener('click', () => {
-    // We modify the randomColor function to return white
+SModeButton.addEventListener('click', () => {
+    // We modify the randomColor function to return the colour chosen in colourpicker
     randomColor = () => {
-        return 'white';
+        return document.querySelector('.colorpicker').value;
     };
 }
 );
