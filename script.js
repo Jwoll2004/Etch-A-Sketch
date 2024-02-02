@@ -2,15 +2,14 @@ function randomColor() {
     return `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
 }
 
-const heading = document.querySelector('.heading');
-function colourfulHeading() {
-    let text = heading.textContent;
-    heading.textContent = "";
+function colourfulText(change) {
+    let text = change.textContent;
+    change.textContent = "";
     for(let i = 0; i < text.length; ++i){
         const span = document.createElement('span');
         span.textContent = text[i];
         span.style.color = randomColor();
-        heading.appendChild(span);
+        change.appendChild(span);
     }
 }
 
@@ -34,7 +33,11 @@ function generateGrid(n) {
     }
 }
 
-colourfulHeading();
+const change = document.querySelector('.heading');
+const change2 = document.querySelector('.credit');
+colourfulText(change);
+colourfulText(change2);
+
 
 
 const container = document.querySelector('.container');
